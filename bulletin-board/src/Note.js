@@ -26,18 +26,20 @@ class Note extends Component {
 		alert("Remove...");
 	}
 
-	save() {
-		alert(this._newText.value)
+	save(e) {
+		e.preventDefault()
+		this.props.onChange(this._newText.value,this.props.index)
+		this.setState({
+			editing: false
+		})
 	}
 	renderForm() {
-
 		return (
 
 			<div className="note">
-				<form>
-					{this._newText}
+				<form onSubmit={this.save}>
 					<textarea ref={input => this._newText = input}></textarea>
-					<button onClick={this.save}><FlaFloppy0/></button>
+					<button id="save"><FlaFloppy0/></button>
 				</form>
 			</div>
 		)

@@ -25,19 +25,33 @@ class Board extends Component {
 
 					id: 35,
 					note: "Learning Python"
-				}
+				}	
 
 			]
 		}
 
 		this.eachNote = this.eachNote.bind(this)
+		this.update = this.update.bind(this)
+	}
 
+	update(newText, i) {
+
+		console.log("updating item at index ", i,newText)
+		this.setState(prevState => ({
+			notes: prevState.notes.map(
+				note => (note.id !== i) ? note : {...note, note: newText}
+			)
+		}))
 	}
 
 	eachNote(note,i) {
 
 		return (
-			<Note key={i} index={i}>{note.note}</Note>
+			<Note key={i}
+				  index={i}
+				  onChange={this.update}>
+			 	  {note.note}
+			</Note>
 		)
 	}
 
