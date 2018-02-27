@@ -15,6 +15,7 @@ class Note extends Component {
 		this.save = this.save.bind(this)
 		this.renderForm = this.renderForm.bind(this)
 		this.renderDisplay = this.renderDisplay.bind(this)
+
 	} 	
 	edit() {
 		this.setState({
@@ -23,7 +24,7 @@ class Note extends Component {
 	}
 
 	remove() {
-		alert("Remove...");
+		this.props.onRemove(this.props.index)
 	}
 
 	save(e) {
@@ -39,7 +40,7 @@ class Note extends Component {
 			<div className="note">
 				<form onSubmit={this.save}>
 					<textarea ref={input => this._newText = input}></textarea>
-					<button id="save"><FlaFloppy0/></button>
+					<button><FlaFloppy0/></button>
 				</form>
 			</div>
 		)
